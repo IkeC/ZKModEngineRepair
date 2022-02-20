@@ -1,6 +1,8 @@
 # Description
 ZKMod Engine Repair is a Project Zomboid Steam Workshop Mod which lets you define how much a spare engine part repairs and whether to use only one spare engine part from your inventory per repair.
 
+Tested on 41.65 MP. Will not work if you use other mods that override *VehicleCommands.lua*.
+
 Mod page on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=2759637097
 
 Workshop ID: 2759637097 / Mod ID: ZKModEngineRepair
