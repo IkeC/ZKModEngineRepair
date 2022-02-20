@@ -1,0 +1,8 @@
+name=ZKMod Engine Repair
+id=ZKModEngineRepair
+description=Lets you define how much a spare engine part repairs and whether to use only one spare engine part from your inventory per repair.     
+description=
+description=Multiplier and inventory behaviour can be configured in sandbox settings. If you don't configure anything the multiplier is 3.0, so repairs are three times more efficient, and only one spare engine part from your inventory is used per repair.
+description=
+description=All details here: https://github.com/IkeC/ZKModEngineRepair/blob/master/README.md
+poster=poster.png
