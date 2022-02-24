@@ -173,12 +173,11 @@ function Commands.repairEngine(player, args)
 			noise('no such part Engine')
 			return
 		end
+
+		-- args.skillLevel seems to be roughly mechanicsSkillLevel/2?
 		local condPerPart = 1 + (args.skillLevel / 2)
 
-		ZKERPrint("condPerPart=" .. condPerPart)
-		ZKERPrint("args.skillLevel=" .. args.skillLevel)
-		ZKERPrint("args.numberOfParts=" .. args.numberOfParts)
-		
+		ZKERPrint("condPerPart=" .. condPerPart .. " args.skillLevel=" .. args.skillLevel .. " args.numberOfParts=" .. args.numberOfParts .. " ZKModEngineRepair.Multiplier=" .. SandboxVars.ZKModEngineRepair.Multiplier .. " SandboxVars.ZKModEngineRepair.UseOnePartOnly=" .. SandboxVars.ZKModEngineRepair.UseOnePartOnly)
 
 		-- if condPerPart > 5 then condPerPart = 5 end
 		local done = 0
@@ -186,15 +185,12 @@ function Commands.repairEngine(player, args)
 		local ZKCondPerPart = condPerPart
 
 		if SandboxVars.ZKModEngineRepair.UseOnePartOnly == 1 then
-			ZKERPrint("UseOnePartOnly=1, using only one spare engine part from inventory")
 			numberOfPartsToUse = 1
-		else
-			ZKERPrint("UseOnePartOnly=0, using all available spare engine parts from inventory")
 		end
 		
 		if SandboxVars.ZKModEngineRepair.Multiplier > 0 then
-			ZKERPrint("original condPerPart=" .. condPerPart .. ", applying ZKModEngineRepair.Multiplier=" .. SandboxVars.ZKModEngineRepair.Multiplier)
-			ZKCondPerPart = condPerPart * SandboxVars.ZKModEngineRepair.Multiplier 
+			ZKERPrint("original condPerPart=" .. condPerPart .. ", adding ZKModEngineRepair.Multiplier=" .. SandboxVars.ZKModEngineRepair.Multiplier)
+			ZKCondPerPart = SandboxVars.ZKModEngineRepair.Multiplier + (args.skillLevel / 2) 
 		end
 
 		for i=1,numberOfPartsToUse do

@@ -25,6 +25,18 @@ All options and possible values: https://github.com/IkeC/ZKModEngineRepair/blob/
 
 # Changelog
 
+## ZKMod Engine Repair 1.1 (2022-02-24)
+
+Multiplier was too strong with when player had a high mechanics skill. It is now applied before the skill bonus is added.
+
+Before: 
+With multiplier 3, mechanics skill 5: 3% repair per engine part 
+With multiplier 3, mechanics skill 10: 12% repair per engine part 
+
+Now:
+With multiplier 3, mechanics skill 5: 3% repair per engine part 
+With multiplier 3, mechanics skill 10: 6% repair per engine part 
+
 ## ZKMod Engine Repair 1.0 (2022-02-20)
 
 Lets you define how much a spare engine part repairs and whether to use only one spare engine part from your inventory per repair. Multiplier and inventory behaviour can be configured in sandbox settings. If you don't configure anything the multiplier is 3.0, so repairs are three times more efficient, and only one spare engine part from your inventory is used per repair.
