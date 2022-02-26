@@ -8,7 +8,7 @@ if isClient() then return end
     print(tostring(os.date("%d.%m.%Y %H:%M:%S",  os.time() + 1 * 60 * 60)) .. " [ZKMod Engine Repair] " .. msg)
  end
 
-ZKERPrint("ZKMod Engine Repair v1.0 - modified VehicleCommands.lua loaded")
+ZKERPrint("ZKMod Engine Repair v1.1.1 - modified VehicleCommands.lua loaded")
 
 local VehicleCommands = {}
 local Commands = {}
@@ -204,7 +204,6 @@ function Commands.repairEngine(player, args)
 				break
 			end
 		end
-
 		if done > 0 then
 			if args.giveXP then
 				player:sendObjectChange('addXp', { perk = Perks.Mechanics:index(), xp = done, noMultiplier = false })
@@ -566,6 +565,7 @@ function Commands.remove(player, args)
 		noise('no such vehicle id='..tostring(args.vehicle))
 	end
 end
+
 function Commands.configHeadlight(player, args)
 	local vehicle = getVehicleById(args.vehicle)
 	if vehicle then
@@ -582,6 +582,29 @@ function Commands.configHeadlight(player, args)
 	else
 		noise('no such vehicle id='..tostring(args.vehicle))
 	end
+end
+
+function Commands.attachTrailer(player, args)
+	local vehicleA = getVehicleById(args.vehicleA)
+	local vehicleB = getVehicleById(args.vehicleB)
+	if not vehicleA then
+		noise('no such vehicle (A) id='..tostring(args.vehicleA))
+		return
+	end
+	if not vehicleB then
+		noise('no such vehicle (B) id='..tostring(args.vehicleB))
+		return
+	end
+	vehicleA:addPointConstraint(vehicleB, args.attachmentA, args.attachmentB)
+end
+
+function Commands.detachTrailer(player, args)
+	local vehicle = getVehicleById(args.vehicle)
+	if not vehicle then
+		noise('no such vehicle id='..tostring(args.vehicle))
+		return
+	end
+	vehicle:breakConstraint(true, false)
 end
 
 function Commands.cheatHotwire(player, args)

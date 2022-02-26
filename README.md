@@ -25,6 +25,10 @@ All options and possible values: https://github.com/IkeC/ZKModEngineRepair/blob/
 
 # Changelog
 
+## ZKMod Engine Repair 1.1.1 (2022-02-26)
+
+Updated for 41.66
+
 ## ZKMod Engine Repair 1.1 (2022-02-24)
 
 Multiplier was too strong with when player had a high mechanics skill. It is now applied before the skill bonus is added.
