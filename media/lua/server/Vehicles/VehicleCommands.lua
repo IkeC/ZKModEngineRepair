@@ -5,7 +5,7 @@
 if isClient() then return end
 
  function ZKERPrint(msg)
-    print(tostring(os.date("%d.%m.%Y %H:%M:%S",  os.time() + 1 * 60 * 60)) .. " [ZKMod Engine Repair] " .. msg)
+    print("[ZKMod Engine Repair] " .. msg)
  end
 
 ZKERPrint("ZKMod Engine Repair v1.1.1 - modified VehicleCommands.lua loaded")
