@@ -1,14 +1,14 @@
 # Description
 ZKMod Engine Repair is a Project Zomboid Steam Workshop Mod which lets you define how much a spare engine part repairs and whether to use only one spare engine part from your inventory per repair.
 
-Tested on 41.65 MP. Will not work if you use other mods that override *VehicleCommands.lua*.
+Tested on 41.73. Will not work if you use other mods that override *VehicleCommands.lua*.
 
 Mod page on Steam: https://steamcommunity.com/sharedfiles/filedetails/?id=2759637097
 
 Workshop ID: 2759637097 / Mod ID: ZKModEngineRepair
 
 # Configuration
-You may configure or turn features off in *\<servername\>_SandboxVars.lua*. If you don't configure anything default values are used.
+You may configure or turn features off in *\<servername\>_SandboxVars.lua* or by GUI. If you don't configure anything default values are used.
   
 Example configuration:
 ```
@@ -24,6 +24,12 @@ All options and possible values: https://github.com/IkeC/ZKModEngineRepair/blob/
 
 
 # Changelog
+
+## ZKMod Engine Repair 1.2 (2022-09-19)
+
+Updated for 41.73
+- Cars and trailers can be towed again.
+- Options can now be configured in the game GUI.
 
 ## ZKMod Engine Repair 1.1.1 (2022-02-26)
 

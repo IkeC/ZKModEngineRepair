@@ -8,7 +8,7 @@ if isClient() then return end
     print("[ZKMod Engine Repair] " .. msg)
  end
 
-ZKERPrint("ZKMod Engine Repair v1.1.1 - modified VehicleCommands.lua loaded")
+ZKERPrint("ZKMod Engine Repair v1.2 - modified VehicleCommands.lua loaded")
 
 local VehicleCommands = {}
 local Commands = {}
@@ -73,6 +73,10 @@ function Commands.installPart(player, args)
 			noise('item is nil')
 			return
 		end
+		if instanceof(item, "Radio") and item:getDeviceData() ~= nil then
+			local presets = item:getDeviceData():getDevicePresets()
+			part:getDeviceData():cloneDevicePresets(presets)
+		end
 		if ZombRand(100) < success then
 			part:setInventoryItem(item, args.mechanicSkill)
 			local tbl = part:getTable("install")
@@ -110,6 +114,10 @@ function Commands.uninstallPart(player, args)
 		if not item then
 			noise('part already uninstalled '..args.part)
 			return
+		end
+		if instanceof(item, "Radio") and item:getDeviceData() ~= nil then
+			local presets = part:getDeviceData():getDevicePresets()
+			item:getDeviceData():cloneDevicePresets(presets)
 		end
 		if ZombRand(100) < success then
 			--VehicleUtils.lowerUninstalledItemCondition(part, item, args.mechanicSkill, player)
@@ -249,6 +257,7 @@ function Commands.setPartCondition(player, args)
 			return
 		end
 		part:setCondition(args.condition)
+		part:doInventoryItemStats(part:getInventoryItem(), part:getMechanicSkillInstaller())
 		vehicle:transmitPartCondition(part)
 	else
 		noise('no such vehicle id='..tostring(args.vehicle))
@@ -441,6 +450,10 @@ function Commands.setLightbarLightsMode(player, args)
 	local vehicle = player:getVehicle()
 	local mode = tonumber(args.mode);
 	if vehicle then
+		local part = vehicle:getPartById("lightbar")
+		if mode > 0 and part and part:getCondition() == 0 then
+			mode = 0
+		end
 		vehicle:setLightbarLightsMode(mode)
 	else
 		noise('player not in vehicle')
@@ -451,6 +464,10 @@ function Commands.setLightbarSirenMode(player, args)
 	local vehicle = player:getVehicle()
 	local mode = tonumber(args.mode);
 	if vehicle then
+		local part = vehicle:getPartById("lightbar")
+		if mode > 0 and part and part:getCondition() == 0 then
+			mode = 0
+		end
 		vehicle:setLightbarSirenMode(mode)
 		vehicle:setSirenStartTime(getGameTime():getWorldAgeHours())
 	else
@@ -595,7 +612,7 @@ function Commands.attachTrailer(player, args)
 		noise('no such vehicle (B) id='..tostring(args.vehicleB))
 		return
 	end
-	vehicleA:addPointConstraint(vehicleB, args.attachmentA, args.attachmentB)
+	vehicleA:addPointConstraint(player, vehicleB, args.attachmentA, args.attachmentB)
 end
 
 function Commands.detachTrailer(player, args)
@@ -615,6 +632,27 @@ function Commands.cheatHotwire(player, args)
 		noise('no such vehicle id='..tostring(args.vehicle))
 	end
 end
+
+function Commands.setHSV(player, args)
+	local vehicle = getVehicleById(args.vehicle)
+	if vehicle then
+		vehicle:setColorHSV(args.h, args.s, args.v)
+		vehicle:transmitColorHSV()
+	else
+		noise('no such vehicle id='..tostring(args.vehicle))
+	end
+end
+
+function Commands.setSkinIndex(player, args)
+	local vehicle = getVehicleById(args.vehicle)
+	if vehicle then
+		vehicle:setSkinIndex(args.index)
+		vehicle:transmitSkinIndex()
+	else
+		noise('no such vehicle id='..tostring(args.vehicle))
+	end
+end
+
 
 VehicleCommands.OnClientCommand = function(module, command, player, args)
 	if module == 'vehicle' and Commands[command] then

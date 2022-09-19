@@ -1,0 +1,7 @@
+Sandbox_EN = {
+	Sandbox_ZKModEngineRepair = "ZKMod Engine Repair",
+	Sandbox_Multiplier = "Engine repair efficiency multiplier",
+	Sandbox_Multiplier_tooltip = "1.0: Regular game value",
+	Sandbox_UseOnePartOnly = "Use one part only",
+	Sandbox_UseOnePartOnly_tooltip = "0: Use all available spare engine parts from Inventory | 1: Use only one spare engine part from inventory",
+}
